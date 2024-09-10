@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evet Handling</title>
+    <link rel="stylesheet" href="./eventHandling.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <label for="name">Name:</label>
+        <input id="name" type="text" required placeholder="Enter your name" />
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          required
+          pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
+          title="Use the format: test@gmail.com"
+          placeholder="Enter your email" />
+        <label for="password">Password:</label>
+        <input
+          id="password"
+          type="password"
+          required
+          placeholder="Enter your password" />
+      </form>
+    </div>
+    <script
+      src="./smalltickets/eventHandling/eventHandling.js"
+      type="module"></script>
+  </body>
+</html>
