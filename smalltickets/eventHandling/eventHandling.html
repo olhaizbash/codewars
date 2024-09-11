@@ -3,32 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evet Handling</title>
+    <title>Event Handling</title>
     <link rel="stylesheet" href="./eventHandling.css" />
   </head>
   <body>
     <div class="container">
-      <form>
+      <form class="registration-form">
+        <h1 class="title">Registration form</h1>
         <label for="name">Name:</label>
-        <input id="name" type="text" required placeholder="Enter your name" />
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          placeholder="Enter your name"
+          maxlength="32"
+          title="Name should consist of only letters, the maximum number of letters is 32" />
+        <span class="error"></span>
         <label for="email">Email:</label>
         <input
           id="email"
+          name="email"
           type="email"
           required
           pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
           title="Use the format: test@gmail.com"
           placeholder="Enter your email" />
+        <span class="error"></span>
         <label for="password">Password:</label>
         <input
           id="password"
+          name="password"
           type="password"
           required
-          placeholder="Enter your password" />
+          placeholder="Enter your password"
+          title="Type your passord" />
+        <span class="error"></span>
+        <button class="submit-btn" type="submit" disabled>Submit</button>
       </form>
     </div>
     <script
-      src="./smalltickets/eventHandling/eventHandling.js"
+      src="/smalltickets/eventHandling/eventHandling.js"
       type="module"></script>
   </body>
 </html>
