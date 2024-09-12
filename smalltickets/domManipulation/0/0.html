@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery Task</title>
+    <link rel="stylesheet" href="./0.css" />
+  </head>
+  <body>
+    <div class="container wrapper">
+      <form class="add-image-form">
+        <h1 class="form-title">Add your image to the gallery</h1>
+        <div class="form-el-wrapper">
+          <input
+            class="form-input"
+            type="text"
+            name="src"
+            required
+            placeholder="https://example.com"
+            pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" />
+          <textarea
+            class="textarea"
+            name="description"
+            rows="5"
+            cols="15"
+            placeholder="Write something about image"></textarea>
+        </div>
+        <button class="add-btn" type="submit">Add image</button>
+      </form>
+      <ul class="gallery"></ul>
+      <div class="backdrop is-hidden">
+        <div class="modal">
+          <button class="btn-prev slider-btn">
+            <svg class="scroll__btn-icon" width="40" height="30">
+              <use href="../../../assets/sprite.svg#slider-left"></use>
+            </svg>
+          </button>
+          <img
+            class="big-image"
+            src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Pexels-pixabay-259280.jpg" />
+          <p class="description"></p>
+          <button class="btn-next slider-btn">
+            <svg class="scroll__btn-icon" width="40" height="30">
+              <use href="../../../assets/sprite.svg#slider-right"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/smalltickets/domManipulation/0/0.js" type="module"></script>
+  </body>
+</html>
