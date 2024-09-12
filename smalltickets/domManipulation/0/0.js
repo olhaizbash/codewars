@@ -97,6 +97,7 @@ refs.buttons.forEach((link) =>
     if (button.classList.contains("btn-next")) {
       activeImgIndex = (activeImgIndex + 1) % galleryList.length;
       refs.bigImg.setAttribute("src", galleryList[activeImgIndex].src);
+      refs.description.textContent = galleryList[activeImgIndex].description;
     }
   })
 );
