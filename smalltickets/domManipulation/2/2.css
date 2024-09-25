@@ -1,0 +1,127 @@
+body {
+  background: #8fbc8f;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.form-add-todo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-todo {
+  width: 300px;
+  padding: 15px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.add-todo-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90px;
+  padding: 15px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background: #ffdab9;
+  cursor: pointer;
+}
+
+.add-todo-btn:hover,
+.add-todo-btn:focus {
+  background: #ffdab9c6;
+}
+
+.todo-list {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox-icon {
+  cursor: pointer;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.edit-btn {
+  width: 60px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background: #f4a460;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover,
+.edit-btn:focus {
+  background: #f4a560a1;
+}
+
+.delete-btn {
+  width: 60px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background: #ff0000;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  background: #ff0000b3;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filter-item button {
+  width: 130px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  background: #ffdab9;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.filter-item button:hover,
+.filter-item button:focus {
+  background: #ffdab9c6;
+}
