@@ -10,38 +10,24 @@
     <div class="container">
       <h1 class="title">TO-DO List</h1>
       <form class="form-add-todo">
-        <input class="input-todo" type="text" placeholder="Add task..." />
+        <input
+          class="input-todo"
+          type="text"
+          placeholder="Add task..."
+          name="todoTask"
+          required />
         <button class="add-todo-btn" type="submit">Add</button>
       </form>
       <ul class="filter-bar">
-        <li class="filter-item"><button>All task</button></li>
-        <li class="filter-item"><button>Completed</button></li>
-        <li class="filter-item"><button>Uncompleted</button></li>
-      </ul>
-      <ul class="todo-list">
-        <li class="todo-item">
-          <svg class="checkbox-icon" width="30" height="30">
-            <use
-              href="../../../assets/sprite.svg#icon-checkbox-unchecked"></use>
-          </svg>
-          <p class="todo-text">Task1</p>
-          <div class="button-wrapper">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-          </div>
+        <li class="filter-item"><button class="all-tasks">All</button></li>
+        <li class="filter-item">
+          <button class="completed-tasks">Completed</button>
         </li>
-        <li class="todo-item">
-          <svg class="checkbox-icon" width="30" height="30">
-            <use
-              href="../../../assets/sprite.svg#icon-checkbox-unchecked"></use>
-          </svg>
-          <p class="todo-text">Task1</p>
-          <div class="button-wrapper">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-          </div>
+        <li class="filter-item">
+          <button class="uncompleted-tasks">Uncompleted</button>
         </li>
       </ul>
+      <ul class="todo-list"></ul>
     </div>
     <script src="/smalltickets/domManipulation/2/2.js" type="module"></script>
   </body>
