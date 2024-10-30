@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phonebook</title>
+    <link rel="stylesheet" href="./3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Phonebook</h1>
+      <form class="form-add-todo">
+        <input
+          class="input-todo"
+          type="text"
+          placeholder="Name"
+          name="name"
+          required />
+        <input
+          class="input-todo"
+          type="tel"
+          placeholder="Phone number"
+          name="phoneNumber"
+          required />
+        <button class="add-todo-btn" type="submit">Add</button>
+      </form>
+      <form class="search-form">
+        <label> Search contact: </label>
+        <input
+          type="text"
+          required
+          placeholder="Type name or phone number..."
+          name="searchQuery"
+          class="search-input" />
+      </form>
+      <ul class="phone-list"></ul>
+    </div>
+    <div class="backdrop is-hidden">
+      <div class="modal">
+        <h2 class="choosen-day-title">Edit contact</h2>
+        <form class="edit-form">
+          <input
+            type="text"
+            required
+            placeholder="New name..."
+            name="editedName"
+            class="edit-input" />
+          <input
+            type="tel"
+            required
+            placeholder="New phone number..."
+            name="editedPhoneNumber"
+            class="edit-input" />
+          <button class="save-btn" type="submit">Save</button>
+        </form>
+        <button class="close-modal">Close</button>
+      </div>
+    </div>
+    <script src="/smalltickets/domManipulation/3/3.js" type="module"></script>
+  </body>
+</html>
