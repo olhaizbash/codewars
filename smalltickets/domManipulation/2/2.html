@@ -29,6 +29,23 @@
       </ul>
       <ul class="todo-list"></ul>
     </div>
+    <div class="backdrop is-hidden">
+      <div class="modal">
+        <h2 class="choosen-day-title">Edit task</h2>
+        <form class="edit-form">
+          <label>
+            <input
+              type="text"
+              required
+              placeholder="New description..."
+              name="editedTodoTask"
+              class="edit-input" />
+          </label>
+          <button class="save-btn" type="submit">Save</button>
+        </form>
+        <button class="close-modal">Close</button>
+      </div>
+    </div>
     <script src="/smalltickets/domManipulation/2/2.js" type="module"></script>
   </body>
 </html>
