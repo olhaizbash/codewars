@@ -1,5 +1,5 @@
 body {
-  background: #857ece;
+  background: #6a6a70;
 }
 
 ul {
@@ -19,4 +19,61 @@ p {
   align-items: center;
   justify-content: center;
   gap: 40px;
+}
+
+.posts-list {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.post-item {
+  background-color: rgb(235, 235, 228);
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.post-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.comment-btn {
+  cursor: pointer;
+  width: 110px;
+  background-color: transparent;
+  border: 1px solid #6a6a70;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.reply-btn {
+  cursor: pointer;
+  width: 110px;
+  background-color: transparent;
+  border: 1px solid #6a6a70;
+  border-radius: 8px;
+  padding: 10px;
 }
