@@ -38,7 +38,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 40px;
 }
 
 .post-wrapper {
@@ -69,6 +69,7 @@ p {
   padding: 10px;
 }
 
+.send-comment-button,
 .reply-btn {
   cursor: pointer;
   width: 110px;
@@ -76,4 +77,51 @@ p {
   border: 1px solid #6a6a70;
   border-radius: 8px;
   padding: 10px;
+}
+
+.reply-on-comment-btn {
+  cursor: pointer;
+  width: 50px;
+  background-color: transparent;
+  border: 1px solid #6a6a70;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-left: 40px;
+}
+
+.replies-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-left: 80px;
+}
+
+.inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.add-comment-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+input,
+textarea {
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  outline: none;
 }

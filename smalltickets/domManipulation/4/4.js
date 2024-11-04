@@ -35,6 +35,7 @@ function createList(dataList) {
                 <button class="comment-btn" data-id="${post.id}"><span class="comments-amount">(${post.comments.length})</span> Comments</button>
                 <button class="reply-btn" data-id="${post.id}">Reply</button>
               </div>
+              <div class="add-comment-wrapper"></div>
               <ul class="comments-list" data-id="${post.id}" id="comments-list"></ul>
             </li>
           `;
@@ -54,6 +55,12 @@ function createComments(comments) {
                   </div>
                   <p>${comment.text}</p>
                 </div>
+                 <div class="button-wrapper">
+                <button class="reply-on-comment-btn" data-id="${
+                  comment.id
+                }">Reply</button>
+              </div>
+              <div class="add-reply-wrapper" data-id="${comment.id}"></div>
                 <ul class="replies-list" data-id="${comment.id}">
                   ${createReplies(comment.replies)}
                 </ul>
@@ -81,14 +88,35 @@ function createReplies(replies) {
     .join("");
 }
 
+function createAddCommentMarcup() {
+  const marcup = `
+        <form class="add-comment-form">
+        <div class="inputs-wrapper">
+        <label for="author"> Name:</label>
+        <input type="text" name="author" value="Anonym"/>
+        
+        <label for="text"> Comment:</label>
+        <textarea name="text" rows="4" cols="50"></textarea>
+        </div>
+        <button type="submit" class="send-comment-button">Send</button>
+        </form>
+                `;
+
+  return marcup;
+}
+
 postsList.addEventListener("click", (e) => {
   const commentsBtn = e.target.closest(".comment-btn");
   const replyBtn = e.target.closest(".reply-btn");
+  const replyOnComment = e.target.closest(".reply-on-comment-btn");
   if (commentsBtn) {
     showComments(commentsBtn);
   }
   if (replyBtn) {
     addComment(replyBtn);
+  }
+  if (replyOnComment) {
+    addCommentReply(replyOnComment);
   }
 });
 
@@ -102,6 +130,80 @@ function showComments(button) {
     `.comments-list[data-id="${postId}"]`
   );
   commentsList.innerHTML = createComments(post.comments);
+}
+
+function addComment(button) {
+  const postId = Number(button.dataset.id);
+  const post = content.find((post) => post.id === postId);
+  if (!post || post.comments.length === 0) return;
+
+  const commentWrapper = document.querySelector(".add-comment-wrapper");
+  commentWrapper.innerHTML = createAddCommentMarcup();
+  const form = document.querySelector(".add-comment-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formDataObj = Object.fromEntries(formData);
+    let id = Math.floor(Math.random() * Date.now());
+    let date = new Date().toLocaleDateString();
+
+    content.map((post) => {
+      if (post.id === postId) {
+        post.comments.push({
+          author: formDataObj.author,
+          text: formDataObj.text,
+          id: id,
+          date: date,
+          replies: [],
+        });
+      }
+    });
+
+    localStorage.setItem("content", JSON.stringify(content));
+    renderList();
+    form.reset();
+  });
+}
+
+function addCommentReply(button) {
+  const commentId = Number(button.dataset.id);
+  let comment;
+
+  content.forEach((post) => {
+    post.comments.forEach((com) => {
+      if (com.id === commentId) {
+        comment = com;
+      }
+    });
+  });
+
+  if (!comment) return;
+
+  const replyWrapper = document.querySelector(
+    `.add-reply-wrapper[data-id="${commentId}"]`
+  );
+  replyWrapper.innerHTML = createAddCommentMarcup();
+
+  const form = replyWrapper.querySelector(".add-comment-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const formDataObj = Object.fromEntries(formData);
+    const id = Math.floor(Math.random() * Date.now());
+    const date = new Date().toLocaleDateString();
+
+    comment.replies.push({
+      author: formDataObj.author,
+      text: formDataObj.text,
+      id: id,
+      date: date,
+    });
+
+    localStorage.setItem("content", JSON.stringify(content));
+    renderList();
+    form.reset();
+  });
 }
 
 onLoad();
