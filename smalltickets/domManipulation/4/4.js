@@ -48,6 +48,9 @@ function createComments(comments) {
     .map((comment) => {
       return `
                 <li class="comment-item" data-id="${comment.id}">
+                <button class="delete-comment-btn" data-id="${
+                  comment.id
+                }">Delete</button>
                 <div class="comment-wrapper">
                   <div class="comment-info">
                     <p>${comment.author}</p>
@@ -75,6 +78,7 @@ function createReplies(replies) {
     .map((reply) => {
       return `
                 <li class="reply-item" data-id="${reply.id}">
+                <button class="delete-reply-btn" data-id="${reply.id}">Delete</button>
                   <div class="reply-wrapper">
                     <div class="reply-info">
                       <p>${reply.author}</p>
@@ -109,6 +113,8 @@ postsList.addEventListener("click", (e) => {
   const commentsBtn = e.target.closest(".comment-btn");
   const replyBtn = e.target.closest(".reply-btn");
   const replyOnComment = e.target.closest(".reply-on-comment-btn");
+  const deleteComment = e.target.closest(".delete-comment-btn");
+  const deleteReply = e.target.closest(".delete-reply-btn");
   if (commentsBtn) {
     showComments(commentsBtn);
   }
@@ -117,6 +123,12 @@ postsList.addEventListener("click", (e) => {
   }
   if (replyOnComment) {
     addCommentReply(replyOnComment);
+  }
+  if (deleteComment) {
+    deleteCommentFunc(deleteComment);
+  }
+  if (deleteReply) {
+    deleteReplyFunc(deleteReply);
   }
 });
 
@@ -204,6 +216,26 @@ function addCommentReply(button) {
     renderList();
     form.reset();
   });
+}
+
+function deleteCommentFunc(button) {
+  const postId = Number(button.dataset.id);
+  content.forEach((post) => {
+    post.comments = post.comments.filter((comment) => comment.id !== postId);
+  });
+  localStorage.setItem("content", JSON.stringify(content));
+  renderList();
+}
+
+function deleteReplyFunc(button) {
+  const postId = Number(button.dataset.id);
+  content.forEach((post) => {
+    post.comments.forEach((com) => {
+      com.replies = com.replies.filter((comment) => comment.id !== postId);
+    });
+  });
+  localStorage.setItem("content", JSON.stringify(content));
+  renderList();
 }
 
 onLoad();

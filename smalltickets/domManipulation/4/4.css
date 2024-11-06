@@ -102,6 +102,7 @@ p {
   justify-content: flex-start;
   gap: 15px;
   padding-left: 80px;
+  width: 700px;
 }
 
 .inputs-wrapper {
@@ -124,4 +125,22 @@ textarea {
   border-radius: 8px;
   border: 1px solid transparent;
   outline: none;
+}
+
+.comment-item,
+.reply-item {
+  position: relative;
+  width: 100%;
+}
+
+.delete-comment-btn,
+.delete-reply-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  outline: none;
+  color: red;
+  background-color: transparent;
 }
