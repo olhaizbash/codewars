@@ -2,9 +2,17 @@ import { data } from "./data.js";
 
 const postsList = document.querySelector(".posts-list");
 
-let content = localStorage.getItem("content")
-  ? JSON.parse(localStorage.getItem("content"))
-  : [...data];
+function getContent() {
+  return JSON.parse(localStorage.getItem("content")) || [...data];
+}
+function setContent(newContent) {
+  localStorage.setItem("content", JSON.stringify(newContent));
+}
+let content = getContent();
+
+function getFormattedDate() {
+  return new Date().toLocaleDateString();
+}
 
 function onLoad() {
   if (content.length === 0) {
@@ -144,38 +152,38 @@ function showComments(button) {
   commentsList.innerHTML = createComments(post.comments);
 }
 
-function addComment(button) {
-  const postId = Number(button.dataset.id);
-  const post = content.find((post) => post.id === postId);
-  if (!post || post.comments.length === 0) return;
+// function addComment(button) {
+//   const postId = Number(button.dataset.id);
+//   const post = content.find((post) => post.id === postId);
+//   if (!post || post.comments.length === 0) return;
 
-  const commentWrapper = document.querySelector(".add-comment-wrapper");
-  commentWrapper.innerHTML = createAddCommentMarcup();
-  const form = document.querySelector(".add-comment-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const formDataObj = Object.fromEntries(formData);
-    let id = Math.floor(Math.random() * Date.now());
-    let date = new Date().toLocaleDateString();
+//   const commentWrapper = document.querySelector(".add-comment-wrapper");
+//   commentWrapper.innerHTML = createAddCommentMarcup();
+//   const form = document.querySelector(".add-comment-form");
+//   form.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(e.target);
+//     const formDataObj = Object.fromEntries(formData);
+//     let id = Math.floor(Math.random() * Date.now());
+//     let date = getFormattedDate();
 
-    content.map((post) => {
-      if (post.id === postId) {
-        post.comments.push({
-          author: formDataObj.author,
-          text: formDataObj.text,
-          id: id,
-          date: date,
-          replies: [],
-        });
-      }
-    });
+//     content.map((post) => {
+//       if (post.id === postId) {
+//         post.comments.push({
+//           author: formDataObj.author,
+//           text: formDataObj.text,
+//           id: id,
+//           date: date,
+//           replies: [],
+//         });
+//       }
+//     });
 
-    localStorage.setItem("content", JSON.stringify(content));
-    renderList();
-    form.reset();
-  });
-}
+//     localStorage.setItem("content", JSON.stringify(content));
+//     renderList();
+//     form.reset();
+//   });
+// }
 
 function addCommentReply(button) {
   const commentId = Number(button.dataset.id);
@@ -203,7 +211,7 @@ function addCommentReply(button) {
     const formData = new FormData(e.target);
     const formDataObj = Object.fromEntries(formData);
     const id = Math.floor(Math.random() * Date.now());
-    const date = new Date().toLocaleDateString();
+    const date = getFormattedDate();
 
     comment.replies.push({
       author: formDataObj.author,
@@ -216,6 +224,35 @@ function addCommentReply(button) {
     renderList();
     form.reset();
   });
+}
+
+function appendComment(postId, comment) {
+  const commentsList = document.querySelector(
+    `.comments-list[data-id="${postId}"]`
+  );
+  commentsList.insertAdjacentHTML("beforeend", createComments([comment]));
+}
+function addComment(button) {
+  const postId = Number(button.dataset.id);
+  const commentWrapper = document.querySelector(".add-comment-wrapper");
+  commentWrapper.innerHTML = createAddCommentMarcup();
+  const form = commentWrapper.querySelector(".add-comment-form");
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target));
+    const newComment = {
+      author: formData.author,
+      text: formData.text,
+      id: Math.floor(Math.random() * Date.now()),
+      date: getFormattedDate(),
+      replies: [],
+    };
+    const post = content.find((post) => post.id === postId);
+    post.comments.push(newComment);
+    setContent(content);
+    appendComment(postId, newComment);
+    form.reset();
+  };
 }
 
 function deleteCommentFunc(button) {
